@@ -17,7 +17,7 @@ pipeline {
         stage('test'){
             steps{
                 echo "Test"
-             bat "mvn clean test"
+            sh "mvn clean test"
             }
         }
           
@@ -25,7 +25,7 @@ pipeline {
             steps {
             
                 withSonarQubeEnv('SonarQube') {
-                    bat 'mvn sonar:sonar'
+                    sh 'mvn sonar:sonar'
                 }
             }
         }
@@ -33,25 +33,25 @@ pipeline {
         stage('Compile'){
             steps{
                 echo "COMPILE"
-             bat "mvn clean install"
+            sh "mvn clean install"
             }
         }
           
-        stage('Upload_Artifact') {
-            steps {
-                script{
-               def server = Artifactory.server 'artifactory'                
-               def uploadSpec = """{
-                  "files": [
-                    {
-                      "pattern": "target/*.jar",
-                      "target": "CI_Poc_Abhijeet/"
-                    }
-                 ]
-                }"""
-                server.upload(uploadSpec) 
-            }
-            }
-        }
+//         stage('Upload_Artifact') {
+//             steps {
+//                 script{
+//                def server = Artifactory.server 'artifactory'                
+//                def uploadSpec = """{
+//                   "files": [
+//                     {
+//                       "pattern": "target/*.jar",
+//                       "target": "CI_Poc_Abhijeet/"
+//                     }
+//                  ]
+//                 }"""
+//                 server.upload(uploadSpec) 
+//             }
+//             }
+//         }
     }
 }
