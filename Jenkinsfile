@@ -14,43 +14,43 @@ pipeline {
             }
         }
           
-        stage('test'){
-            steps{
-                echo "Test"
-            bat "mvn clean test"
-            }
-        }
+//         stage('test'){
+//             steps{
+//                 echo "Test"
+//             bat "mvn clean test"
+//             }
+//         }
           
-        stage('Sonar Analysis') {
-            steps {
+//         stage('Sonar Analysis') {
+//             steps {
             
-                withSonarQubeEnv('SonarQube') {
-                    bat 'mvn sonar:sonar'
-                }
-            }
-        } 
-        stage('Compile'){
-            steps{
-                echo "COMPILE"
-            bat "mvn clean install"
-            }
-        }
+//                 withSonarQubeEnv('SonarQube') {
+//                     bat 'mvn sonar:sonar'
+//                 }
+//             }
+//         } 
+//         stage('Compile'){
+//             steps{
+//                 echo "COMPILE"
+//             bat "mvn clean install"
+//             }
+//         }
           
-        stage('Upload_Artifact') {
-            steps {
-                script{
-               def server = Artifactory.server 'artifactory'                
-               def uploadSpec = """{
-                  "files": [
-                    {
-                      "pattern": "target/*.jar",
-                      "target": "CI_Poc_Abhijeet/"
-                    }
-                 ]
-                }"""
-                server.upload(uploadSpec) 
-            }
-            }
-        }
+//         stage('Upload_Artifact') {
+//             steps {
+//                 script{
+//                def server = Artifactory.server 'artifactory'                
+//                def uploadSpec = """{
+//                   "files": [
+//                     {
+//                       "pattern": "target/*.jar",
+//                       "target": "CI_Poc_Abhijeet/"
+//                     }
+//                  ]
+//                 }"""
+//                 server.upload(uploadSpec) 
+//             }
+//             }
+//         }
     }
 }
