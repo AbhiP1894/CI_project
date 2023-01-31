@@ -28,8 +28,7 @@ pipeline {
                     bat 'mvn sonar:sonar'
                 }
             }
-        }
-          
+        } 
         stage('Compile'){
             steps{
                 echo "COMPILE"
