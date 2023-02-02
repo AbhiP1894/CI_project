@@ -7,10 +7,16 @@ pipeline {
       
       stages {
 
-        stage('Initialize'){
+//         stage('Initialize'){
+//             steps{
+//                 echo "PATH = ${M2_HOME}/bin:${PATH}"
+//                 echo "M2_HOME = /opt/maven"
+//             }
+//         }
+           stage('Compile'){
             steps{
-                echo "PATH = ${M2_HOME}/bin:${PATH}"
-                echo "M2_HOME = /opt/maven"
+                echo "COMPILE"
+            bat "mvn clean install"
             }
         }
           
@@ -29,12 +35,7 @@ pipeline {
                 }
             }
         } 
-        stage('Compile'){
-            steps{
-                echo "COMPILE"
-            bat "mvn clean install"
-            }
-        }
+       
           
         stage('Upload_Artifact') {
             steps {
