@@ -1,63 +1,79 @@
-pipeline {
-    agent any
-    tools {
-        maven "Maven 3.6.3"
-        jdk "JDK 11"
-    }         
+// pipeline {
+//     agent any
+//     tools {
+//         maven "Maven 3.6.3"
+//         jdk "JDK 11"
+//     }         
       
-      stages {
+//       stages {
 
-        stage('Initialize'){
-            steps{
-                echo "PATH = ${M2_HOME}/bin:${PATH}"
-                echo "M2_HOME = /opt/maven"
-            }
-        }
+//         stage('Initialize'){
+//             steps{
+//                 echo "PATH = ${M2_HOME}/bin:${PATH}"
+//                 echo "M2_HOME = /opt/maven"
+//             }
+//         }
           
-        stage('test'){
-            steps{
-                echo "Test"
-             bat "mvn clean test"
-            }
-        }
+//         stage('test'){
+//             steps{
+//                 echo "Test"
+//              bat "mvn clean test"
+//             }
+//         }
           
-        stage('Sonar Analysis') {
-            steps {
+//         stage('Sonar Analysis') {
+//             steps {
             
-                withSonarQubeEnv('SonarQube') {
-                    bat 'mvn sonar:sonar'
-                }
-            }
-        }
+//                 withSonarQubeEnv('SonarQube') {
+//                     bat 'mvn sonar:sonar'
+//                 }
+//             }
+//         }
           
-        stage('Compile'){
-            steps{
-                echo "COMPILE"
-             bat "mvn clean install"
-            }
-        }
+//         stage('Compile'){
+//             steps{
+//                 echo "COMPILE"
+//              bat "mvn clean install"
+//             }
+//         }
           
-        stage('Upload_Artifact') {
-            steps {
-                script{
-               def server = Artifactory.server 'artifactory'                
-               def uploadSpec = """{
-                  "files": [
-                    {
-                      "pattern": "target/*.jar",
-                      "target": "CI_Poc_Abhijeet/"
-                    }
-                 ]
-                }"""
-                server.upload(uploadSpec) 
-            }
-            }
-        }
+//         stage('Upload_Artifact') {
+//             steps {
+//                 script{
+//                def server = Artifactory.server 'artifactory'                
+//                def uploadSpec = """{
+//                   "files": [
+//                     {
+//                       "pattern": "target/*.jar",
+//                       "target": "CI_Poc_Abhijeet/"
+//                     }
+//                  ]
+//                 }"""
+//                 server.upload(uploadSpec) 
+//             }
+//            }
+//         }
           
-          post{
-                 always {
-                     jiraSendBuildInfo site: 'abhijeetfirstjirasite.atlassian.net', branch: 'CP-2-HomePage'
-                 }
-             }
-    }
+//     post{
+//          always {
+//                      jiraSendBuildInfo site: 'abhijeetfirstjirasite.atlassian.net', branch: 'CP-2-HomePage'
+//           }
+//        }
+//     }
+// }
+
+pipeline {
+    agent any
+      stages {
+          stage ('build'){
+              steps {
+                  echo 'build done'
+              }
+          post {
+                 always {
+                     jiraSendBuildInfo site: 'abhijeetfirstjirasite.atlassian.net', branch: 'CP-2-HomePage'
+                 }
+             }
+          }
+    }
 }
