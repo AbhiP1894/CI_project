@@ -45,12 +45,12 @@ pipeline {
           server.upload(uploadSpec)
         }
       }
-    }
-    post {
-      always {
-          jiraSendBuildInfo site: 'abhijeetfirstjirasite.atlassian.net', branch: 'CP-2-HomePage'
-        }
-      }
+    } 
+  }
+  post {
+    always {
+      jiraSendBuildInfo site: 'abhijeetfirstjirasite.atlassian.net', branch: 'CP-2-HomePage'
     }
   }
+}
 
