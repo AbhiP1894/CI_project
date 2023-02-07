@@ -15,9 +15,7 @@ public class App
 		}
 		else {
 			return false;
-		}
-		
-		
+		}		
 	}
 //    public static void main( String[] args )
 //    {
