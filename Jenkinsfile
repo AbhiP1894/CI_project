@@ -56,7 +56,7 @@ pipeline {
           
           post {
                  always {
-                     jiraSendBuildInfo site: 'firstsite.atlassian.net', branch: 'CP-2-HomePage'
+                     jiraSendBuildInfo site: 'abhijeetfirstjirasite.atlassian.net', branch: 'CP-2-HomePage'
                  }
              }
     }
