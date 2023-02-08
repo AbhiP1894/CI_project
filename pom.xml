@@ -10,7 +10,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>JacocoExample</name>
+	<name>CICD_Project</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
