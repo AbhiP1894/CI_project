@@ -1,8 +1,7 @@
 version: 2.1
 jobs:
   test-java:
-    machine: true
-    resource_class: team_1/aws
+    machine: true  # Use machine executor
     steps:
       - checkout
       - run:
@@ -20,22 +19,8 @@ jobs:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
           paths:
             - ~/.m2/repository
-  deploy:
-    # This is an example deploy job, not actually used by the workflow
-    docker:
-      - image: cimg/base:stable
-    steps:
-      # Replace this with steps to deploy to users
-      - run:
-          name: deploy
-          command: '#e.g. ./deploy.sh'
-      - run:
-          name: found jenkins config
-          command: ':'
+
 workflows:
   build-and-test:
     jobs:
       - test-java
-    # - deploy:
-    #     requires:
-    #       - test-java
