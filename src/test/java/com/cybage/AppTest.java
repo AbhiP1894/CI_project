@@ -1,15 +1,14 @@
 package com.cybage;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-{
+public class AppTest {
     String input1 = "noon";
     App app = new App();
     boolean expected = true;
@@ -17,16 +16,16 @@ public class AppTest
     @Test
     public void isPalindromeTest() {
         assertEquals(expected, app.isPalindrome(input1));
-    } 
+    }
 
     @Test
     public void isNotPalindromeTest() {
         assertEquals(false, app.isPalindrome("abc"));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void isPalindromeExceptionTest() {
-        app.isPalindrome(null);
+        assertThrows(IllegalArgumentException.class, () -> app.isPalindrome(null));
     }
 
     // Test cases for calculator methods
