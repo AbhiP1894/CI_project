@@ -5,7 +5,7 @@ jobs:
     machine: true  
     resource_class: team_2/aws
     steps:
-      - run: echo "Say hello to YAML onkar!"
+      - run: echo "Say hello to YAML on AWS runner!"
 
   say_goodbye:
     machine: true  
@@ -18,13 +18,10 @@ jobs:
     resource_class: team_2/aws
     steps:
       - checkout  
-
       
       - run: mvn clean install
-
       
       - run: mvn jacoco:report
-
       
       - run: mvn surefire-report:report
 
