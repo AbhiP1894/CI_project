@@ -5,6 +5,12 @@ jobs:
     resource_class: team_2/aws
     steps:
       - run: echo "Hi I'm on a Container Runner!"
+      - checkout
+      - maven/with_cache:  
+          steps:
+            - run:
+                name: Build and Test
+                command: mvn verify
 workflows:
   build-workflow:
     jobs:
