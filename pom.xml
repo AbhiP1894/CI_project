@@ -10,107 +10,32 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>JacocoExample</name>
-	<url>http://maven.apache.org</url>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
-	</properties>
-
-
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>6.1.5.Final</version>
-			<type>pom</type>
-		</dependency>
-	</dependencies>
-	<build>
-		<plugins>
-
-
-
-
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.7</version>
-				<executions>
-					<!-- Prepares the property pointing to the JaCoCo runtime agent -->
-					<execution>
-						<id>prepare-agent</id>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-						<!-- Uncomment this in case you are using the maven surefire plugin -->
-						<!-- <configuration> -->
-						<!-- &lt;!&ndash; Sets the name of the property containing the settings 
-							for JaCoCo -->
-						<!-- runtime agent. &ndash;&gt; -->
-						<!-- <propertyName>surefireArgLine</propertyName> -->
-						<!-- </configuration> -->
-					</execution>
-					<!-- Ensures that the code coverage report for unit tests is created 
-						after unit tests have been run. -->
-					<execution>
-						<id>generate-report</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<!--<plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
-				<configuration> <forkCount>3</forkCount> <reuseForks>true</reuseForks> <argLine>-Xmx1024m 
-				-XX:MaxPermSize=256m</argLine> </configuration> </plugin> -->
-
-
-
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.1</version>
-			</plugin>
-
-		</plugins>
-
-
-	</build>
-
-	<profiles>
-		<profile>
-			<id>integration-tests</id>
-		</profile>
-		<profile>
-			<id>no-tests</id>
-			<properties>
-				<maven.test.skip>true</maven.test.skip>
-			</properties>
-		</profile>
-		<profile>
-			<repositories>
-				<repository>
-					<id>release</id>
-					<name>custom repo</name>
-					<url>http://localhost:8081/#admin/repository/repository/maven-release</url>
-
-				</repository>
-
-			</repositories>
-		</profile>
-	</profiles>
-
+	 <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.8.1</version> <!-- Use the latest version -->
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>  <!-- Update plugin version if necessary -->
+        <configuration>
+          <source>17</source>  <!-- Set Java source version to 17 or later -->
+          <target>17</target>  <!-- Set Java target version to 17 or later -->
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version> <!-- Latest version as of now -->
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
