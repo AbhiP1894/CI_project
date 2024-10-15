@@ -1,48 +1,48 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.training.example</groupId>
-	<artifactId>JacocoExample</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <groupId>com.training.example</groupId>
+    <artifactId>JacocoExample</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-	<dependencies>
-		<!-- JUnit 5 Dependency -->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>5.8.1</version> <!-- Latest JUnit 5 version -->
-			<scope>test</scope>
-		</dependency>
+    <dependencies>
+        <!-- JUnit 5 Dependency -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.8.1</version> <!-- Latest JUnit 5 version -->
+            <scope>test</scope>
+        </dependency>
 
-		<!-- JUnit 4 Dependency (for backward compatibility) -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.2</version> <!-- Latest JUnit 4 version -->
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-  
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>  <!-- Update plugin version if necessary -->
-				<configuration>
-					<source>17</source>  <!-- Set Java source version to 17 or later -->
-					<target>17</target>  <!-- Set Java target version to 17 or later -->
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M5</version> <!-- Latest version as of now -->
-			</plugin>
-		</plugins>
-	</build>
+        <!-- JUnit 4 Dependency (for backward compatibility) -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version> <!-- Latest JUnit 4 version -->
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>  <!-- Update plugin version if necessary -->
+                <configuration>
+                    <source>11</source>  <!-- Set Java source version to 11 -->
+                    <target>11</target>  <!-- Set Java target version to 11 -->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version> <!-- Latest version as of now -->
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
