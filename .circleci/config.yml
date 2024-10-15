@@ -1,8 +1,7 @@
 version: 2.1
 jobs:
   build:
-    docker:
-      - image: cimg/base:current
+    machine: true  
     resource_class: team_2/aws
     steps:
       - run: echo "Hi I'm on a Container Runner!"
