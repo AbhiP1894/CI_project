@@ -1,16 +1,45 @@
 version: 2.1
 
 jobs:
-  build:
+  say_hello:
     machine: true  
     resource_class: team_2/aws
     steps:
-      - run: echo "Hi I'm on a Container Runner!"
+      - run: echo "Say hello to YAML onkar!"
+
+  say_goodbye:
+    machine: true  
+    resource_class: gitactionorg/circleci  
+    steps:
+      - run: echo "Say goodbye to YAML new!"
+
+  build_and_test_maven:
+    machine: true  
+    resource_class: gitactionorg/circleci  
+    steps:
+      - checkout  
+
+      
       - run: mvn clean install
+
+      
+      - run: mvn jacoco:report
+
+      
+      - run: mvn surefire-report:report
+
+      
+      - store_artifacts:
+          path: target/site/jacoco/index.html
+          destination: code-coverage
+
+      
+      - store_test_results:
+          path: target/surefire-reports
+
 workflows:
-  build-workflow:
+  hello_and_goodbye:
     jobs:
-      - build
-
-
-
+      - say_hello
+      - say_goodbye
+      - build_and_test_maven
