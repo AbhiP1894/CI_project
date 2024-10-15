@@ -1,27 +1,26 @@
 version: 2.1
 
 orbs:
-  maven: circleci/maven@1.4.1  
-  
+  maven: circleci/maven@1.4.1
+
 jobs:
   test-java:
-    docker:
-      - image: cimg/openjdk:17.0
+    machine: true
+    resource_class: team_1/aws  
+    
     steps:
       - checkout
-      - maven/with_cache:  
+      - maven/with_cache:
           steps:
             - run:
                 name: Build and Test
                 command: mvn verify
-           
       - store_test_results:
-          path: target/surefire-reports  
+          path: target/surefire-reports
       - store_artifacts:
-          path: target/surefire-reports 
+          path: target/surefire-reports
           destination: surefire-reports
-     
-          
+
 workflows:
   build-and-test:
     jobs:
