@@ -9,13 +9,13 @@ jobs:
 
   say_goodbye:
     machine: true  
-    resource_class: gitactionorg/circleci  
+    resource_class: team_2/aws
     steps:
       - run: echo "Say goodbye to YAML new!"
 
   build_and_test_maven:
     machine: true  
-    resource_class: gitactionorg/circleci  
+    resource_class: team_2/aws
     steps:
       - checkout  
 
