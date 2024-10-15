@@ -2,6 +2,7 @@ version: 2.1
 jobs:
   test-java:
     machine: true  # Use machine executor
+    resource_class: team_1/aws
     steps:
       - checkout
       - run:
