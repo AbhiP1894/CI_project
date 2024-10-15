@@ -18,7 +18,6 @@ jobs:
     resource_class: team_2/aws
     steps:
       - checkout  
-      
       - run: mvn clean install
       
       - run: mvn jacoco:report
