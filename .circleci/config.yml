@@ -1,25 +1,15 @@
 version: 2.1
-orbs:
-  maven: circleci/maven@1.4.1  
-
 jobs:
-  test-java:
-    machine: true  # Use machine executor
+  build:
+    docker:
+      - image: cimg/base:current
     resource_class: team_2/aws
     steps:
-      - checkout
-      - maven/with_cache:  
-          steps:
-            - run:
-                name: Build and Test
-                command: mvn verify
-                
-      - store_test_results:
-          path: target/surefire-reports
-      - store_artifacts:
-          path: target/surefire-reports 
-          destination: surefire-reports
+      - run: echo "Hi I'm on a Container Runner!"
 workflows:
-  build-and-test:
+  build-workflow:
     jobs:
-      - test-java
+      - build
+
+
+
