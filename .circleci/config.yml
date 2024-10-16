@@ -7,12 +7,6 @@ jobs:
     steps:
       - run: echo "Say hello to YAML on AWS runner!"
 
-  say_goodbye:
-    machine: true  
-    resource_class: team_2/aws
-    steps:
-      - run: echo "Say goodbye to YAML new!"
-
   build_and_test_maven:
     machine: true  
     resource_class: team_2/aws
@@ -32,6 +26,8 @@ jobs:
       
       - store_test_results:
           path: target/surefire-reports
+
+          
 
 
 workflows:
