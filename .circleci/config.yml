@@ -34,5 +34,4 @@ workflows:
   hello_and_goodbye:
     jobs:
       - say_hello
-      - say_goodbye
       - build_and_test_maven
