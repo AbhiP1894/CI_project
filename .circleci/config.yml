@@ -33,6 +33,12 @@ jobs:
       - store_test_results:
           path: target/surefire-reports
 
+      - run:
+          name: Build Docker Image
+          command: |
+            docker build -t calculator-app:latest .
+
+
 workflows:
   hello_and_goodbye:
     jobs:
