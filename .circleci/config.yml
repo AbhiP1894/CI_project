@@ -27,11 +27,11 @@ jobs:
       - store_test_results:
           path: target/surefire-reports
 
+       # Docker Build Step
+      - setup_remote_docker  # Enable Docker commands in CircleCI
       - run:
           name: Build Docker Image
-          command: |
-            docker build -t calculator-app:latest .
-
+          command: docker build -t calculator-app:latest .
           
 
 
