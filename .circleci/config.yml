@@ -18,21 +18,20 @@ jobs:
       
       - run: mvn surefire-report:report
 
-      
       - store_artifacts:
           path: target/site/jacoco/index.html
           destination: code-coverage
 
-      
       - store_test_results:
           path: target/surefire-reports
           
       - setup_remote_docker  
+      
       - run:
           name: Build Docker Image
           command: docker build -t calculator-app:latest .
 
-       - run:
+      - run:
           name: Docker Login
           command: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
@@ -40,16 +39,13 @@ jobs:
           name: Tag Docker Image
           command: docker tag calculator-app:latest $DOCKER_USERNAME/calculator-app:latest
 
-
       - run:
           name: Push Docker Image
           command: docker push $DOCKER_USERNAME/calculator-app:latest
-          
-
 
 workflows:
   hello_and_goodbye:
     jobs:
       - say_hello
-      - build_and_test_maven
-         context: myContext
+      - build_and_test_maven:
+          context: myContext 
