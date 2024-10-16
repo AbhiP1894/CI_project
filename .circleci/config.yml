@@ -2,14 +2,14 @@ version: 2.1
 
 jobs:
   say_hello:
-    machine: true  
-    resource_class: team_2/aws
+    docker:
+      - image: cimg/openjdk:17.0
     steps:
       - run: echo "Say hello to YAML on AWS runner!"
 
   build_and_test_maven:
-    machine: true  
-    resource_class: team_2/aws
+    docker:
+      - image: cimg/openjdk:17.0
     steps:
       - checkout  
       - run: mvn clean install
