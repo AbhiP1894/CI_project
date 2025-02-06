@@ -22,6 +22,7 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
+                sh 'docker login'
                 sh 'docker push onkarko1106/abhidemo/abhi-java-app:latest'
             }
         }
