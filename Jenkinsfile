@@ -16,14 +16,14 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t abhidemo/abhi-java-app .'
+                sh 'docker build -t abhi-java-app .'
             }
         }
 
         stage('Push Docker Image') {
             steps {
-                sh 'docker tag abhidemo/abhi-java-app:latest onkarko1106/abhidemo/abhi-java-app:latest'
-                sh 'docker push onkarko1106/abhidemo/abhi-java-app:latest'
+                sh 'docker tag abhi-java-app onkarko1106/abhi-java-app:latest'
+                sh 'docker push onkarko1106/abhi-java-app:latest'
             }
         }
     }
