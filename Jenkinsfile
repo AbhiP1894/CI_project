@@ -57,24 +57,24 @@
 pipeline {
     agent { label 'abhi-linux' }
 
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
+    // stages {
+    //     stage('Hello') {
+    //         steps {
+    //             echo 'Hello World'
+    //         }
+    //     }
         
-        stage('Git Clone - Master') {
-            steps {
-                withCredentials([gitUsernamePassword(credentialsId: 'git-cred', gitToolName: 'git')]) {
-                    // Clean up any previous clone and then clone the 'master' branch
-                    sh 'rm -rf CI_project || true'
-                    sh 'git clone --branch master https://github.com/AbhiP1894/CI_project.git'
-                }
-            }
-        }
+    //     stage('Git Clone - Master') {
+    //         steps {
+    //             withCredentials([gitUsernamePassword(credentialsId: 'git-cred', gitToolName: 'git')]) {
+    //                 // Clean up any previous clone and then clone the 'master' branch
+    //                 sh 'rm -rf CI_project || true'
+    //                 sh 'git clone --branch master https://github.com/AbhiP1894/CI_project.git'
+    //             }
+    //         }
+    //     }
 
-        stage('Maven Validate - Master') {
+        stage('Maven verify') {
             steps {
                 // Run mvn validate inside the cloned repository directory for 'master' branch
                 dir('CI_project') {
@@ -90,23 +90,15 @@ pipeline {
                 }
             }
         }
-
-    //     stage('Switch to CP-2-HomePage Branch') {
-    //         steps {
-    //             dir('CI_project') {
-    //                 // Checkout to the 'CP-2-HomePage' branch for testing
-    //                 sh 'git checkout CP-2-HomePage'
-    //             }
-    //         }
-    //     }
-
-    //     stage('Maven Test - CP-2-HomePage') {
-    //         steps {
-    //             // Run mvn test inside the 'CP-2-HomePage' branch
-    //             dir('CI_project') {
-    //                 sh 'mvn test'
-    //             }
-    //         }
-    //     }
     }
+stage('Docker Build') {
+    steps {
+        dir('CI_project') {
+            sh '''
+            docker build -t onkarko1106/abhidemo/abhi-java-app:latest .
+            '''
+        }
+    }
+}
+
 }
