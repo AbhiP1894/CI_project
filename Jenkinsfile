@@ -94,11 +94,13 @@ pipeline {
 stage('Docker Build') {
     steps {
         dir('CI_project') {
-            sh '''
-            docker build -t onkarko1106/abhidemo/abhi-java-app:latest .
-            '''
+            sh 'docker build -t onkarko1106/abhidemo/abhi-java-app:latest . '
         }
     }
 }
-
+    stage('Docker image push'){
+              steps {
+                    sh 'docker push onkarko1106/abhidemo/abhi-java-app:latest '
+                 }
+           }
 }
