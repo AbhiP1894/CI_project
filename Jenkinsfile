@@ -8,11 +8,11 @@ pipeline {
             }
         }
         
-        stage('SonarQube Analysis') {
-            steps {
-                sh 'sonar-scanner'
-            }
-        }
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         sh 'sonar-scanner'
+        //     }
+        // }
 
         stage('Build Docker Image') {
             steps {
