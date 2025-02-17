@@ -18,8 +18,9 @@ pipeline {
              steps {
                 script {
                     def dockImage = docker.build("abhi-java-app:${env.BUILD_ID}")
-                    withCredentials([usernameColonPassword(credentialsId: 'docker', variable: 'Docker_Password')]) {
-                        sh "docker login -u onkarko1106 -p ${Docker_Password}"
+                    withCredentials([usernameColonPassword(credentialsId: 'docker', usernameVariable: 'DOCKERHUB_USERNAME', 
+passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                        sh "docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}"
                         sh "docker tag abhi-java-app:${env.BUILD_ID} onkarko1106/abhi-java-app:${env.BUILD_ID}"
                         sh "docker push onkarko1106/abhi-java-app:${env.BUILD_ID}"
                         sh "docker push onkarko1106/abhi-java-app:latest"
