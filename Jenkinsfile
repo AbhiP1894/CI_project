@@ -14,7 +14,7 @@ pipeline {
         //     }
         // }
 
-        stage('Build Docker Image') {
+        stage('Build and Push Docker Image') {
              steps {
                 script {
                     def dockImage = docker.build("abhi-java-app:${env.BUILD_ID}")
@@ -22,20 +22,9 @@ pipeline {
                         sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                         sh "docker tag abhi-java-app:${env.BUILD_ID} onkarko1106/abhi-java-app:${env.BUILD_ID}"
                         sh "docker push onkarko1106/abhi-java-app:${env.BUILD_ID}"
-                        // sh "docker push onkarko1106/abhi-java-app:latest"
                     }
                 }
-                 
             }
         }
-
-        // stage('Push Docker Image') {
-        //     steps {
-        //         sh 'docker tag abhi-java-app onkarko1106/abhi-java-app:latest'
-        //         sh 'docker push onkarko1106/abhi-java-app:latest'
-        //     }
-        // }
-
-        
     }
 }
