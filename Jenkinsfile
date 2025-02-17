@@ -17,10 +17,11 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                // sh 'docker build -t abhi-java-app .'
-                def dockImage = docker.build("abhi-java-app:${env.BUILD_ID}")
-                dockImage.push()
-
-                dockImage.push('latest')
+              script{ 
+                  def dockImage = docker.build("abhi-java-app:${env.BUILD_ID}")
+                  dockImage.push()
+                  dockImage.push('latest')
+              }
             }
         }
 
