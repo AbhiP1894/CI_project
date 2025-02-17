@@ -16,15 +16,21 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t abhi-java-app .'
+               // sh 'docker build -t abhi-java-app .'
+                def dockImage = docker.build(abhi-java-app:${env.BUILD_ID}
+                dockImage.push()
+
+                dockImage.push('latest')
             }
         }
 
-        stage('Push Docker Image') {
-            steps {
-                sh 'docker tag abhi-java-app onkarko1106/abhi-java-app:latest'
-                sh 'docker push onkarko1106/abhi-java-app:latest'
-            }
-        }
+        // stage('Push Docker Image') {
+        //     steps {
+        //         sh 'docker tag abhi-java-app onkarko1106/abhi-java-app:latest'
+        //         sh 'docker push onkarko1106/abhi-java-app:latest'
+        //     }
+        // }
+
+        
     }
 }
