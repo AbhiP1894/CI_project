@@ -18,9 +18,12 @@ pipeline {
              steps {
                 script {
                     def dockImage = docker.build("abhi-java-app:${env.BUILD_ID}")
-                    sh "docker tag abhi-java-app:${env.BUILD_ID} onkarko1106/abhi-java-app:${env.BUILD_ID}"
-                    dockImage.push()
-                    dockImage.push('latest')
+                    
+                    withCredentials([string(credentialsId: docker, variable: 'DOCKER_PASSWORD')]) {
+                        sh "docker login -u onkarko1106 -p ${DOCKER_PASSWORD}"
+                        sh "docker tag abhi-java-app:${env.BUILD_ID} onkarko1106/abhi-java-app:${env.BUILD_ID}"
+                        sh "docker push onkarko1106/abhi-java-app:${env.BUILD_ID}"
+                        sh "docker push onkarko1106/abhi-java-app:latest"
                 }
             }
         }
