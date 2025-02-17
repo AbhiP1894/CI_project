@@ -19,7 +19,7 @@ pipeline {
                // sh 'docker build -t abhi-java-app .'
               script{ 
                   def dockImage = docker.build("abhi-java-app:${env.BUILD_ID}")
-                  sh 'docker tag "abhi-java-app:${env.BUILD_ID}" onkarko1106/"abhi-java-app:${env.BUILD_ID}"'
+                  sh 'docker tag abhi-java-app:${env.BUILD_ID} onkarko1106/abhi-java-app:${env.BUILD_ID}'
                   dockImage.push()
                   dockImage.push('latest')
               }
